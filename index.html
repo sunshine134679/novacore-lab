@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>星核创研 | NovaCore Lab</title>
+<style>
+:root {
+  --bg: #080816;
+  --surface: #0f0f28;
+  --cyan: #00c8ff;
+  --purple: #7c3fff;
+  --gold: #f0c040;
+  --text: #eaeaef;
+  --muted: #9898b8;
+  --border: rgba(255,255,255,0.06);
+  --card: rgba(255,255,255,0.03);
+  --radius: 16px;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body {
+  font-family: 'Inter', 'PingFang SC', 'Microsoft YaHei', 'Segoe UI', system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.68;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── 动态网格背景 ── */
+.bg-grid {
+  position: fixed; inset:0; pointer-events:none; z-index:0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.018) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.018) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 30%, black 30%, transparent 70%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 30%, black 30%, transparent 70%);
+}
+
+/* ── 导航 ── */
+.nav {
+  position:fixed; top:0; left:0; width:100%; z-index:100;
+  padding: 0 40px; height:68px;
+  display:flex; align-items:center; justify-content:space-between;
+  transition: background .35s, box-shadow .35s, backdrop-filter .35s;
+}
+.nav.scrolled {
+  background: rgba(8,8,22,0.82); backdrop-filter: blur(24px) saturate(140%);
+  box-shadow: 0 1px 0 var(--border);
+}
+.nav-brand {
+  font-weight:700; font-size:1.15rem; letter-spacing:2px;
+  background: linear-gradient(135deg, var(--cyan), var(--purple));
+  -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+}
+.nav-links { display:flex; gap:32px; list-style:none; align-items:center; }
+.nav-links a { color:var(--muted); text-decoration:none; font-size:0.88rem; letter-spacing:1px; transition:color .25s; }
+.nav-links a:hover { color:var(--cyan); }
+.nav-toggle { display:none; flex-direction:column; gap:5px; background:none; border:none; cursor:pointer; z-index:101; padding:4px; }
+.nav-toggle span { display:block; width:24px; height:1.5px; background:var(--text); border-radius:2px; transition:.3s; }
+.nav-toggle.open span:nth-child(1) { transform:rotate(45deg) translate(5px,5px); }
+.nav-toggle.open span:nth-child(2) { opacity:0; }
+.nav-toggle.open span:nth-child(3) { transform:rotate(-45deg) translate(5px,-5px); }
+
+/* ── 区块 ── */
+section { position:relative; z-index:1; padding:100px 40px; max-width:1120px; margin:0 auto; }
+
+/* ── Hero ── */
+.hero {
+  min-height:100vh; display:flex; flex-direction:column;
+  align-items:center; justify-content:center; text-align:center; padding-top:68px;
+}
+.hero-mark {
+  width:96px; height:96px; border-radius:24px; margin-bottom:36px;
+  background: linear-gradient(135deg, var(--cyan), var(--purple));
+  display:flex; align-items:center; justify-content:center;
+  font-size:2.4rem; font-weight:900; color:#fff; letter-spacing:2px;
+  animation: levitate 5s ease-in-out infinite;
+  box-shadow: 0 0 80px rgba(0,200,255,0.25), 0 0 160px rgba(124,63,255,0.15);
+}
+@keyframes levitate {
+  0%,100% { transform:translateY(0); }
+  50% { transform:translateY(-10px); }
+}
+.hero h1 {
+  font-size:clamp(2.6rem,7vw,5rem); font-weight:800; letter-spacing:8px;
+  background: linear-gradient(180deg, #ffffff 0%, #a0c4ff 50%, var(--cyan) 100%);
+  -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+}
+.hero .en { font-size:1rem; color:var(--muted); letter-spacing:10px; text-transform:uppercase; margin-top:6px; }
+.hero .slogan {
+  margin-top:36px; font-size:clamp(1.1rem,2.6vw,1.5rem); color:var(--muted);
+  letter-spacing:5px; padding-left:24px; border-left:2px solid var(--cyan);
+}
+.hero .scroll {
+  position:absolute; bottom:36px; display:flex; flex-direction:column; align-items:center; gap:8px;
+  color:var(--muted); font-size:0.72rem; letter-spacing:2px; animation: bob 2.2s ease-in-out infinite;
+}
+@keyframes bob { 0%,100%{transform:translateY(0)} 50%{transform:translateY(8px)} }
+.scroll-arrow { width:20px; height:20px; border-right:1.5px solid var(--cyan); border-bottom:1.5px solid var(--cyan); transform:rotate(45deg); }
+
+/* ── 标题 ── */
+.sec-label { text-align:center; }
+.sec-label .en { font-size:0.75rem; color:var(--muted); letter-spacing:6px; text-transform:uppercase; margin-bottom:8px; }
+.sec-label h2 { font-size:clamp(1.6rem,2.8vw,2.2rem); font-weight:700; letter-spacing:3px; }
+.sec-label h2 em { font-style:normal; background:linear-gradient(135deg, var(--cyan), var(--purple)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+.sec-label .line { width:48px; height:2px; background:linear-gradient(90deg, var(--cyan), var(--purple)); margin:20px auto 56px; border-radius:2px; }
+
+/* ── 关于 ── */
+.about-grid { display:grid; grid-template-columns:1.1fr 0.9fr; gap:64px; align-items:center; }
+.about-text h3 { font-size:1.3rem; margin-bottom:20px; letter-spacing:2px; font-weight:600; }
+.about-text p { color:var(--muted); font-size:0.93rem; margin-bottom:14px; }
+.about-visual {
+  aspect-ratio:1; max-width:320px; margin:0 auto; border-radius:24px;
+  background: linear-gradient(135deg, rgba(0,200,255,0.06), rgba(124,63,255,0.08));
+  border:1px solid var(--border); display:flex; align-items:center; justify-content:center;
+  position:relative; overflow:hidden;
+}
+.about-visual::after {
+  content:''; position:absolute; width:120px; height:200%;
+  background:linear-gradient(180deg, transparent, var(--cyan), var(--purple), transparent);
+  animation:spin 8s linear infinite; opacity:0.12;
+}
+@keyframes spin { to { transform:rotate(360deg) } }
+.about-visual span { position:relative; z-index:1; font-size:3.2rem; font-weight:900; background:linear-gradient(135deg, var(--cyan), var(--purple)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+
+/* ── 能力 ── */
+.cards { display:grid; grid-template-columns:repeat(auto-fit, minmax(230px, 1fr)); gap:20px; }
+.card {
+  background:var(--card); border:1px solid var(--border); border-radius:var(--radius);
+  padding:36px 28px; transition: transform .35s, border-color .35s, box-shadow .35s;
+  position:relative; overflow:hidden; cursor:default;
+}
+.card:hover { transform:translateY(-6px); border-color:rgba(0,200,255,0.25); box-shadow:0 24px 56px rgba(0,0,0,0.4); }
+.card::before { content:''; position:absolute; top:0; left:0; width:100%; height:2px; background:linear-gradient(90deg, var(--cyan), var(--purple)); opacity:0; transition:opacity .35s; }
+.card:hover::before { opacity:1; }
+.card .icon { font-size:1.8rem; margin-bottom:18px; }
+.card h4 { font-size:1rem; letter-spacing:1px; margin-bottom:8px; }
+.card p { color:var(--muted); font-size:0.84rem; }
+
+/* ── 团队 ── */
+.team { display:grid; grid-template-columns:repeat(auto-fit, minmax(190px, 1fr)); gap:24px; }
+.member {
+  text-align:center; padding:32px 20px; background:var(--card);
+  border:1px solid var(--border); border-radius:var(--radius); transition:transform .3s;
+}
+.member:hover { transform:translateY(-4px); }
+.member .avatar {
+  width:68px; height:68px; border-radius:50%; margin:0 auto 16px;
+  background:linear-gradient(135deg, var(--cyan), var(--purple));
+  display:flex; align-items:center; justify-content:center;
+  font-size:1.4rem; font-weight:700; color:#fff;
+}
+.member h4 { font-size:0.95rem; margin-bottom:4px; }
+.member .role { color:var(--cyan); font-size:0.75rem; letter-spacing:1px; margin-bottom:8px; }
+.member p { color:var(--muted); font-size:0.78rem; }
+
+/* ── 联系 ── */
+.contact-box {
+  max-width:480px; margin:0 auto; text-align:center;
+  background:var(--card); border:1px solid var(--border); border-radius:20px; padding:48px 36px;
+}
+.contact-box p { color:var(--muted); margin-bottom:8px; }
+.contact-box .email { font-size:1.15rem; color:var(--cyan); letter-spacing:1px; }
+.qr { width:100px; height:100px; margin:24px auto 0; background:rgba(255,255,255,0.03); border:1px solid var(--border); border-radius:12px; display:flex; align-items:center; justify-content:center; color:var(--muted); font-size:0.7rem; }
+
+/* ── Footer ── */
+footer { text-align:center; padding:40px; border-top:1px solid var(--border); color:var(--muted); font-size:0.78rem; letter-spacing:2px; position:relative; z-index:1; }
+
+/* ── 滚动动画 ── */
+.reveal { opacity:0; transform:translateY(32px); transition:opacity .8s cubic-bezier(0.16,1,0.3,1), transform .8s cubic-bezier(0.16,1,0.3,1); }
+.reveal.on { opacity:1; transform:translateY(0); }
+
+/* ── 响应式 ── */
+@media (max-width:768px) {
+  .nav { padding:0 20px; }
+  .nav-links { display:none; position:fixed; inset:0; background:rgba(8,8,22,0.97); flex-direction:column; align-items:center; justify-content:center; gap:40px; backdrop-filter:blur(30px); }
+  .nav-links.open { display:flex; }
+  .nav-links a { font-size:1.15rem; }
+  .nav-toggle { display:flex; }
+  section { padding:64px 20px; }
+  .about-grid { grid-template-columns:1fr; gap:40px; }
+  .about-visual { max-width:220px; }
+  .cards { grid-template-columns:1fr 1fr; }
+  .team { grid-template-columns:1fr 1fr; }
+}
+@media (max-width:480px) {
+  .cards { grid-template-columns:1fr; }
+  .team { grid-template-columns:1fr; }
+  .hero h1 { letter-spacing:4px; }
+}
+</style>
+</head>
+<body>
+
+<div class="bg-grid"></div>
+
+<!-- ════ 导航 ════ -->
+<nav class="nav" id="nav">
+  <div class="nav-brand">NovaCore Lab</div>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#home">首页</a></li>
+    <li><a href="#about">关于</a></li>
+    <li><a href="#capability">能力</a></li>
+    <li><a href="#team">团队</a></li>
+    <li><a href="#contact">联系</a></li>
+  </ul>
+  <button class="nav-toggle" id="navToggle" aria-label="menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- ════ Hero ════ -->
+<section class="hero reveal" id="home">
+  <div class="hero-mark">N</div>
+  <h1>星核创研</h1>
+  <p class="en">NovaCore Lab</p>
+  <p class="slogan">聚星成核 · 创见未来</p>
+  <div class="scroll"><span>SCROLL</span><div class="scroll-arrow"></div></div>
+</section>
+
+<!-- ════ 关于 ════ -->
+<section class="reveal" id="about">
+  <div class="sec-label">
+    <p class="en">About Us</p>
+    <h2>关于 <em>我们</em></h2>
+    <div class="line"></div>
+  </div>
+  <div class="about-grid">
+    <div class="about-text">
+      <h3>一群有梦想的实干者</h3>
+      <p>星核创研（NovaCore Lab）是一支由高校学子组成的创新创业团队。我们相信，每一个微小创意都可能像恒星内核一样积蓄能量，最终爆发出改变世界的力量。</p>
+      <p>团队以"聚星成核，创见未来"为核心理念，聚焦品牌策划、技术开发与项目实战。我们强调执行力、创新力与协作力的三位一体，致力于在每一次交付中超越预期。</p>
+      <p>不做纸上谈兵的理论派——用行动说话，用结果证明。</p>
+    </div>
+    <div class="about-visual"><span>✦</span></div>
+  </div>
+</section>
+
+<!-- ════ 能力 ════ -->
+<section class="reveal" id="capability">
+  <div class="sec-label">
+    <p class="en">Capabilities</p>
+    <h2>团队 <em>能力</em></h2>
+    <div class="line"></div>
+  </div>
+  <div class="cards">
+    <div class="card"><div class="icon">🎯</div><h4>品牌策划</h4><p>品牌定位、视觉系统、传播策略全链路设计</p></div>
+    <div class="card"><div class="icon">💻</div><h4>Web 开发</h4><p>响应式网站、Web应用、小程序全栈交付</p></div>
+    <div class="card"><div class="icon">📊</div><h4>数据分析</h4><p>数据驱动决策，可视化呈现商业洞察</p></div>
+    <div class="card"><div class="icon">🎨</div><h4>UI 设计</h4><p>极简美学与用户体验的精准平衡</p></div>
+    <div class="card"><div class="icon">📋</div><h4>项目管理</h4><p>敏捷流程，按时按质交付每一个里程碑</p></div>
+    <div class="card"><div class="icon">🤝</div><h4>团队协作</h4><p>透明沟通、快速响应、高效协同</p></div>
+  </div>
+</section>
+
+<!-- ════ 团队 ════ -->
+<section class="reveal" id="team">
+  <div class="sec-label">
+    <p class="en">Our Team</p>
+    <h2>核心 <em>成员</em></h2>
+    <div class="line"></div>
+  </div>
+  <div class="team">
+    <div class="member"><div class="avatar">A</div><h4>成员姓名</h4><p class="role">项目负责人</p><p>统筹全局 · 把控方向</p></div>
+    <div class="member"><div class="avatar">B</div><h4>成员姓名</h4><p class="role">技术负责人</p><p>架构设计 · 全栈开发</p></div>
+    <div class="member"><div class="avatar">C</div><h4>成员姓名</h4><p class="role">设计负责人</p><p>视觉设计 · 品牌塑造</p></div>
+    <div class="member"><div class="avatar">D</div><h4>成员姓名</h4><p class="role">运营负责人</p><p>内容策划 · 对外联络</p></div>
+  </div>
+</section>
+
+<!-- ════ 联系 ════ -->
+<section class="reveal" id="contact">
+  <div class="sec-label">
+    <p class="en">Contact</p>
+    <h2>联系 <em>我们</em></h2>
+    <div class="line"></div>
+  </div>
+  <div class="contact-box">
+    <p>📧 联系邮箱</p>
+    <p class="email">novacore@team.cn</p>
+    <p style="margin-top:12px;">欢迎交流与合作</p>
+    <div class="qr">[ 二维码 ]</div>
+  </div>
+</section>
+
+<footer>© 2026 NovaCore Lab &nbsp;·&nbsp; 聚星成核 · 创见未来</footer>
+
+<script>
+// ── 导航滚动 ──
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>{
+  nav.classList.toggle('scrolled',scrollY>40);
+  document.querySelectorAll('.reveal').forEach(el=>{
+    if(el.getBoundingClientRect().top < innerHeight*0.84) el.classList.add('on');
+  });
+});
+setTimeout(()=>document.querySelectorAll('.reveal').forEach(el=>{
+  if(el.getBoundingClientRect().top < innerHeight*0.84) el.classList.add('on');
+}),120);
+
+// ── 移动菜单 ──
+const toggle=document.getElementById('navToggle');
+const links=document.getElementById('navLinks');
+toggle.onclick=()=>{ toggle.classList.toggle('open'); links.classList.toggle('open'); };
+links.querySelectorAll('a').forEach(a=>a.onclick=()=>{ toggle.classList.remove('open'); links.classList.remove('open'); });
+</script>
+</body>
+</html>
