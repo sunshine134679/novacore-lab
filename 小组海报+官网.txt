@@ -1,0 +1,94 @@
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  星核创研 | NovaCore Lab
+  小组宣传海报 + 官网交付文档
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+
+══════════════════════════
+ 一、宣传海报
+══════════════════════════
+
+【规格】A4竖版 210x297mm | 深色科技企业风
+
+【布局】
+┌──────────────────────┐
+│     [LOGO: N]        │ 顶部居中，80px蓝紫渐变
+│   几何N+星光+轨道     │
+│                      │
+│   星 核 创 研         │ 中文名 48pt Bold 白色
+│  NOVACORE LAB        │ 英文名 14pt 宽字距 浅灰
+│                      │
+│  ━━━━━━━━━━━━━━━━━━ │ 渐变分割线
+│                      │
+│ 聚星成核·创见未来     │ 口号 28pt Bold 科技蓝
+│                      │
+│  ━━━━━━━━━━━━━━━━━━ │
+│                      │
+│ 我们是高校学子组成的   │ 简介 11pt 浅灰
+│ 创新创业实干型团队    │
+│                      │
+│ ⚡执行第一 💡创新驱动  │ 价值观标签
+│ 🤝协作共赢 📈持续精进  │
+│                      │
+│  ━━━━━━━━━━━━━━━━━━ │
+│                      │
+│ 成员: XXX/XXX/XXX    │ 底部信息
+│ [二维码] 2026企业实训 │
+└──────────────────────┘
+
+【配色】
+背景 #080816 | LOGO #00C8FF→#7B3FFF
+中文名 #FFFFFF | 英文名 #8080A8
+口号 #00C8FF | 正文 #B0B0C8
+标签 rgba(0,200,255,0.12) | 底部 #707090
+
+【AI海报提示词】
+A4 vertical poster 210x297mm, dark tech startup style,
+deep space navy background (#080816) with subtle star
+particles and grid texture, minimalist geometric logo
+centered at top — a cyan-to-purple gradient "N"
+letterform with a six-pointed spark at the upper right
+and three orbital arcs wrapping around, bold Chinese
+title "星核创研" in large white modern sans-serif
+(48pt), "NOVACORE LAB" below in spaced uppercase light
+gray letters (14pt), core slogan "聚星成核·创见未来"
+in bright cyan (#00C8FF) as the visual focal point
+between two thin gradient divider lines, team intro in
+4 lines of light gray, four capsule tags "执行第一"
+"创新驱动" "协作共赢" "持续精进" in blue pill badges,
+member names and QR placeholder at bottom, clean
+corporate minimal aesthetic, plenty of negative space,
+no clutter, 2D flat design --ar 2:3 --style minimal
+
+
+══════════════════════════
+ 二、小组官网
+══════════════════════════
+
+【公网地址】
+https://sunshine134679.github.io/novacore-lab/
+
+【GitHub】
+https://github.com/sunshine134679/novacore-lab
+
+【网站结构】单页滚动 6区块
+Hero首页 → 关于我们 → 团队能力(6卡片)
+→ 团队成员(4卡片) → 联系我们 → Footer
+
+【设计特点】
+参考苹果官网+科技创业公司风格
+深空黑底+蓝紫渐变+网格背景
+LOGO浮动动画+滚动渐入+卡片悬浮
+固定导航栏(毛玻璃效果)
+手机/平板/桌面全响应式
+纯HTML+CSS+JS，零依赖，单文件
+
+【修改指南】
+打开index.html搜索替换：
+"成员姓名"→实际姓名(4处)
+"novacore@team.cn"→实际邮箱
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  星核创研·NovaCore Lab·聚星成核·创见未来
+  企业实训完整交付·2026年7月
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━

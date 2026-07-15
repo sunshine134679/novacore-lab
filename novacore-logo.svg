@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <defs>
+    <linearGradient id="brandGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00C8FF"/>
+      <stop offset="100%" stop-color="#7B3FFF"/>
+    </linearGradient>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#080816"/>
+      <stop offset="100%" stop-color="#12122A"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="softGlow">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- 背景圆 -->
+  <rect width="400" height="400" rx="48" fill="url(#bgGrad)"/>
+
+  <!-- 环绕轨道弧线 - 最外层 -->
+  <ellipse cx="200" cy="200" rx="170" ry="170" fill="none" stroke="url(#brandGrad)" stroke-width="1.5" opacity="0.25"
+    stroke-dasharray="800 280" transform="rotate(-15 200 200)"/>
+
+  <!-- 环绕轨道弧线 - 中层 -->
+  <ellipse cx="200" cy="200" rx="145" ry="145" fill="none" stroke="url(#brandGrad)" stroke-width="2" opacity="0.4"
+    stroke-dasharray="600 320" transform="rotate(25 200 200)"/>
+
+  <!-- 环绕轨道弧线 - 内层 -->
+  <ellipse cx="200" cy="200" rx="120" ry="120" fill="none" stroke="url(#brandGrad)" stroke-width="2.5" opacity="0.55"
+    stroke-dasharray="400 360" transform="rotate(-10 200 200)"/>
+
+  <!-- N 字母主体 -->
+  <g filter="url(#glow)">
+    <!-- N 左竖线 -->
+    <line x1="120" y1="260" x2="120" y2="130" stroke="url(#brandGrad)" stroke-width="14" stroke-linecap="round"/>
+    <!-- N 对角线 -->
+    <line x1="120" y1="130" x2="260" y2="270" stroke="url(#brandGrad)" stroke-width="14" stroke-linecap="round"/>
+    <!-- N 右竖线 -->
+    <line x1="260" y1="140" x2="260" y2="270" stroke="url(#brandGrad)" stroke-width="14" stroke-linecap="round"/>
+  </g>
+
+  <!-- 六芒星光点 -->
+  <g filter="url(#glow)" transform="translate(275, 118)">
+    <polygon points="0,-28 8,-8 28,0 8,8 0,28 -8,8 -28,0 -8,-8"
+      fill="#00C8FF" opacity="0.9"/>
+    <!-- 光点核心 -->
+    <circle cx="0" cy="0" r="6" fill="#FFFFFF"/>
+  </g>
+
+  <!-- 底部小光点装饰 -->
+  <circle cx="105" cy="280" r="2" fill="#00C8FF" opacity="0.5" filter="url(#softGlow)"/>
+  <circle cx="280" cy="285" r="1.5" fill="#7B3FFF" opacity="0.4" filter="url(#softGlow)"/>
+</svg>

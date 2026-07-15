@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <defs>
+    <linearGradient id="brandGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00C8FF"/>
+      <stop offset="100%" stop-color="#7B3FFF"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="5" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- 环绕轨道 - 外 -->
+  <ellipse cx="200" cy="200" rx="170" ry="170" fill="none" stroke="url(#brandGrad)" stroke-width="1.5" opacity="0.35"
+    stroke-dasharray="800 280" transform="rotate(-15 200 200)"/>
+  <!-- 环绕轨道 - 中 -->
+  <ellipse cx="200" cy="200" rx="140" ry="140" fill="none" stroke="url(#brandGrad)" stroke-width="2" opacity="0.5"
+    stroke-dasharray="550 340" transform="rotate(25 200 200)"/>
+  <!-- 环绕轨道 - 内 -->
+  <ellipse cx="200" cy="200" rx="112" ry="112" fill="none" stroke="url(#brandGrad)" stroke-width="2.5" opacity="0.65"
+    stroke-dasharray="380 340" transform="rotate(-10 200 200)"/>
+
+  <!-- N 字母 -->
+  <g filter="url(#glow)">
+    <line x1="120" y1="260" x2="120" y2="130" stroke="url(#brandGrad)" stroke-width="14" stroke-linecap="round"/>
+    <line x1="120" y1="130" x2="260" y2="270" stroke="url(#brandGrad)" stroke-width="14" stroke-linecap="round"/>
+    <line x1="260" y1="140" x2="260" y2="270" stroke="url(#brandGrad)" stroke-width="14" stroke-linecap="round"/>
+  </g>
+
+  <!-- 六芒星光点 -->
+  <g filter="url(#glow)" transform="translate(275, 118)">
+    <polygon points="0,-26 7,-7 26,0 7,7 0,26 -7,7 -26,0 -7,-7" fill="#00C8FF" opacity="0.9"/>
+    <circle cx="0" cy="0" r="5" fill="#FFFFFF"/>
+  </g>
+</svg>
